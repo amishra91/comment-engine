@@ -10,12 +10,6 @@ class CommentBox extends Component {
       comments: [
         {
           id: 1, author: 'Abhishek Mishra', body: 'Great Job'
-        },
-        {
-          id: 2, author: 'Vishnu Sharma', body: 'Excellent Work'
-        },
-        {
-          id: 3, author: 'Vishnu Khandal', body: 'Excellent Work'
         }
       ]
     };

@@ -6,7 +6,18 @@ class CommentBox extends Component {
   constructor () {
     super();
     this.state =  {
-      showComments: false
+      showComments: false,
+      comments: [
+        {
+          id: 1, author: 'Abhishek Mishra', body: 'Great Job'
+        },
+        {
+          id: 2, author: 'Vishnu Sharma', body: 'Excellent Work'
+        },
+        {
+          id: 3, author: 'Vishnu Khandal', body: 'Excellent Work'
+        }
+      ]
     };
   }
   render() {
@@ -26,6 +37,7 @@ class CommentBox extends Component {
             <div className="comment-box">
               <h4 className="comment-count">{this._getCommentsTitle(comments.length)}</h4>
               <button className="btn btn-primary pull-right" onClick={this._handleClick.bind(this)}>{buttonText}</button>
+              <CommentForm addComment={this._addComment.bind(this)} />
               {commentNodes}
             </div>
           </div>
@@ -39,18 +51,8 @@ class CommentBox extends Component {
     });
   }
   _getComments() {
-    const commentList = [
-      {
-        id: 1, author: 'Abhishek Mishra', body: 'Great Job'
-      },
-      {
-        id: 2, author: 'Vishnu Sharma', body: 'Excellent Work'
-      },
-      {
-        id: 3, author: 'Vishnu Khandal', body: 'Excellent Work'
-      }
-    ];
-    return commentList.map((comment) => {
+    
+    return this.state.comments.map((comment) => {
       return (<Comment author={comment.author} body={comment.body} key={comment.id} />);
     });
   }
@@ -65,6 +67,14 @@ class CommentBox extends Component {
       return `${commentCount} Comments`;
     }
   }
+  _addComment(author, body) {
+    const comment = {
+      id: this.state.comments.length + 1,
+      author,
+      body
+    };
+    this.setState({ comments: this.state.comments.concat([comment])});
+  }
 }
 
 class Comment extends Component {
@@ -78,6 +88,31 @@ class Comment extends Component {
         </div>
       </div>
     );
+  }
+}
+
+class CommentForm extends Component {
+  render() {
+    return (
+      <form className="comment-form" onSubmit={this._handleSubmit.bind(this)}>
+        <label>Join the discussion</label>
+        <div className="form-group">
+          <input type="text" className="form-control" placeholder="Name" ref={(input) => this._author = input} />
+        </div>
+        <div className="form-group">
+          <textarea className="form-control" placeholder="Comment" ref={(textarea) => this.body = textarea}/>
+        </div>
+        <div className="form-group">
+          <button type="submit" className="btn btn-success">Comment</button>
+        </div>
+      </form>
+    );
+  }
+  _handleSubmit(event) {
+    event.preventDefault();
+    let author = this._author;
+    let body = this.body;
+    this.props.addComment(author.value, body.value);
   }
 }
 

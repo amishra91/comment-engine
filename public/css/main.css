@@ -13,5 +13,7 @@
       border-bottom: 1px solid #fff; }
     .container .comment-box .comment-list .comment .comment-footer {
       float: right; }
+  .container .comment-box .comment-form {
+    margin-top: 30px; }
 
 /*# sourceMappingURL=main.css.map */

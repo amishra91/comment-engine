@@ -3,22 +3,40 @@ import logo from './logo.svg';
 import './App.css';
 
 class CommentBox extends Component {
+  constructor () {
+    super();
+    this.state =  {
+      showComments: false
+    };
+  }
   render() {
     const comments = this._getComments();
+    let commentNodes;
+    if (this.state.showComments) {
+      commentNodes = <div className="comment-list"> {comments} </div>;
+    }
+    let buttonText = 'Show Comments';
+    if (this.state.showComments) {
+      buttonText = 'Hide Comments';
+    }
     return (
       <div className="container">
         <div className="row">
           <div className="col-md-12">
             <div className="comment-box">
               <h4 className="comment-count">{this._getCommentsTitle(comments.length)}</h4>
-              <div className="comment-list">
-                {comments}
-              </div>
+              <button className="btn btn-primary pull-right" onClick={this._handleClick.bind(this)}>{buttonText}</button>
+              {commentNodes}
             </div>
           </div>
         </div>
       </div>
     );
+  }
+  _handleClick() {
+    this.setState({
+      showComments: !this.state.showComments
+    });
   }
   _getComments() {
     const commentList = [

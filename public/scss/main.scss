@@ -5,7 +5,6 @@
   h1,h2,h3,h4,h5,h6,p {
     margin: 5px 0 5px 0;
   }
-
   .comment-box {
     .comment-list {
       .comment {
@@ -23,6 +22,9 @@
     }
     .comment-form {
       margin-top: 30px;
+      textarea {
+        resize: none;
+      }
     }
   }
 }

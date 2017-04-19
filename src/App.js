@@ -91,10 +91,10 @@ class CommentForm extends Component {
       <form className="comment-form" onSubmit={this._handleSubmit.bind(this)}>
         <label>Join the discussion</label>
         <div className="form-group">
-          <input type="text" className="form-control" placeholder="Name" ref={(input) => this._author = input} />
+          <input type="text" className="form-control" placeholder="Name" required="required" ref={(input) => this._author = input} />
         </div>
         <div className="form-group">
-          <textarea className="form-control" placeholder="Comment" ref={(textarea) => this.body = textarea}/>
+          <textarea className="form-control" placeholder="Comment" required="required" ref={(textarea) => this.body = textarea}/>
         </div>
         <div className="form-group">
           <button type="submit" className="btn btn-success">Comment</button>

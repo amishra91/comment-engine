@@ -15,5 +15,7 @@
       float: right; }
   .container .comment-box .comment-form {
     margin-top: 30px; }
+    .container .comment-box .comment-form textarea {
+      resize: none; }
 
 /*# sourceMappingURL=main.css.map */
